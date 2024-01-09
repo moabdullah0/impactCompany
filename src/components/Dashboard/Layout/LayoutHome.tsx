@@ -19,11 +19,11 @@ import openedMixin from "./Sidebar/SidebarItems/openedMixin";
 import closedMixin from "./Sidebar/SidebarItems/closedMixin";
 import MuiDrawer from "@mui/material/Drawer";
 import Navbar from "./Navbar/InfoNavbar";
-
+import LightModeIcon from '@mui/icons-material/LightMode';
 import CustomDrawerHeader from "./Navbar/DrawerNavbar";
 import IconsSide from "../../../data/Dashboard/SidebarData";
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { ThemeProvider } from "../../../App";
+import { ThemeProviders } from "../../../App";
 
 export const drawerWidth = 240;
 
@@ -70,7 +70,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer({ setMode }: ThemeProvider) {
+export default function MiniDrawer({ setMode }: ThemeProviders) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -163,7 +163,10 @@ export default function MiniDrawer({ setMode }: ThemeProvider) {
                     justifyContent: "center",
                   }}
                 >
-                   <DarkModeIcon/> 
+                  {
+                    theme.palette.mode=="light"?<LightModeIcon/>:  <DarkModeIcon/> 
+                  }
+                 
                 </ListItemIcon>
                 <ListItemText
                 primary="DarkMode"

@@ -5,8 +5,9 @@ import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOut
 import MouseOutlinedIcon from "@mui/icons-material/MouseOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import TimeLine from "./TimeLine/TimeLine";
-
+import {  useTheme } from "@mui/material/styles";
 const Projectmilestones = () => {
+  const theme=useTheme();
   return (
     <div>
       <Card>
@@ -16,11 +17,11 @@ const Projectmilestones = () => {
             justifyContent={"space-between"}
             fontSize={"15px"}
           >
-            <div>
+            <div >
               <Box>Project milestones</Box>
-              <div className="bg-blue-100 w-[100%] justify-center items-center p-3 rounded-lg mt-5">
+              <div className={` w-[100%] justify-center items-center p-3 rounded-lg mt-5 ${theme.palette.mode=='dark'?'text-white bg-blue-700':'text-black bg-blue-100'}`}>
                 <h5 className="text-blue-400 font-bold">milestone 2</h5>
-                <small className="text-sm ">
+                <small className={`text-sm  ${theme.palette.mode=='dark'?'text-white ':'text-black'}`}>
                   Simple description Simple description Simple description
                 </small>
               </div>

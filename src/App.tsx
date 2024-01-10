@@ -31,7 +31,8 @@ function App() {
   const theme = useTheme();
 
   return (
-    <ThemeProvider theme={darkTheme}>
+  
+<ThemeProvider theme={darkTheme} >
       <CssBaseline />
 
       {/* <MiniDrawer setMode={setMode} mode={"light"} />
@@ -39,6 +40,8 @@ function App() {
       <Maintest theme={theme} /> */}
       <HomePage setMode={setMode} mode={mode} theme={theme}/>
     </ThemeProvider>
+    
+    
   );
 }
 

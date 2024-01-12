@@ -1,4 +1,4 @@
-import { useTheme } from "@mui/material/styles";
+
 // import MiniDrawer from "./components/Dashboard/Layout/LayoutHome";
 // import Maintest from "./components/Dashboard/Home/Home";
 import { ThemeProvider } from "@mui/material/styles";
@@ -12,7 +12,7 @@ import HomePage from "./components/Front-End/HomePage/HomePage";
 export interface ThemeProviders{
   mode:"light"|"dark"
   setMode: (mode: "light" | "dark") => void;
-  theme:Theme
+ 
 }
 function App() {
   const [mode, setMode] = useState<"light" | "dark">("light");
@@ -23,23 +23,24 @@ function App() {
       primary: {
         light: grey[200],
         main: blue[500],
-        dark: "#0000", // Provide a valid color string here
+        dark: "#0000", 
       },
     },
   });
 
-  const theme = useTheme();
 
   return (
-  
-<ThemeProvider theme={darkTheme} >
+  <div >
+<ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
       {/* <MiniDrawer setMode={setMode} mode={"light"} />
 
       <Maintest theme={theme} /> */}
-      <HomePage setMode={setMode} mode={mode} theme={theme}/>
+      <HomePage setMode={setMode} mode={mode}/>
     </ThemeProvider>
+  </div>
+
     
     
   );

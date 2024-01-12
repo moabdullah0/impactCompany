@@ -15,14 +15,15 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { ThemeProviders } from "../../../../App";
 import NavbarMobile from "./NavbarMobile";
 import menuItems from "../../../../data/HomePage/NavbarData";
-
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { grey } from "@mui/material/colors";
 interface Props extends ThemeProviders {
   window?: () => Window;
 }
 
 const drawerWidth = 240;
 
-export default function DrawerAppBar({ window, setMode, theme }: Props) {
+export default function DrawerAppBar({ window, setMode,mode }: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -34,7 +35,7 @@ export default function DrawerAppBar({ window, setMode, theme }: Props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" sx={{ backgroundColor: grey[800] }} >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -51,7 +52,7 @@ export default function DrawerAppBar({ window, setMode, theme }: Props) {
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             <div className="flex relative">
-              <img src={nav} className="h-16" />
+              <img src={nav} className="h-16 " />
               <span className="mx-5 mt-5">Impact</span>
             </div>
           </Typography>
@@ -64,10 +65,10 @@ export default function DrawerAppBar({ window, setMode, theme }: Props) {
             <Button
               sx={{ color: "#fff" }}
               onClick={() =>
-                setMode(theme.palette.mode == "light" ? "dark" : "light")
+                setMode(mode== "light" ? "dark" : "light")
               }
             >
-              <DarkModeIcon />
+              {mode==='dark' ?<DarkModeIcon />:<LightModeIcon/>}
             </Button>
           </Box>
         </Toolbar>
@@ -91,9 +92,9 @@ export default function DrawerAppBar({ window, setMode, theme }: Props) {
         >
           <NavbarMobile
             handleDrawerToggle={handleDrawerToggle}
-            mode={theme.palette.mode}
+            mode={mode}
             setMode={setMode}
-            theme={theme}
+       
           />
         </Drawer>
       </nav>

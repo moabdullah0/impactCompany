@@ -3,21 +3,25 @@ import Navbar from "./Navbar/Navbar";
 import { ThemeProviders } from "../../../App";
 import {  CssBaseline } from "@mui/material";
 import AboutCompany from "./Main/AboutCompany";
-import { useTheme } from "@mui/material/styles";
-const HomePage = ({ setMode, mode, theme }: ThemeProviders) => {
-  const themes = useTheme();
+
+import Landing from "./Main/Landing/Landing";
+import Cards from "./Main/Cards/Cards";
+import Footer from "./Footer/Footer";
+
+const HomePage = ({ setMode, mode }: ThemeProviders) => {
+ 
   return (
     <div
-      className={`${
-        themes.palette.mode === "light" ? "bg-gray-200" : ""
-      } h-screen   `}
+     
       dir="rtl"
     >
       <CssBaseline />
-      <Navbar setMode={setMode} theme={theme} mode={mode} />
-      
-        <AboutCompany />
+      <Navbar setMode={setMode}  mode={mode} />
+      <Landing setMode={setMode}  mode={mode}/>
+        <AboutCompany setMode={setMode}  mode={mode}/>
     
+    <Cards setMode={setMode}  mode={mode}/>
+    <Footer setMode={setMode}  mode={mode}/>
     </div>
   );
 };

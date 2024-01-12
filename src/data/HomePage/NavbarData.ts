@@ -1,2 +1,2 @@
-const menuItems  = ['Home', 'About', 'Contact'];
+const menuItems  = ['الرئيسية', 'حول الشركة', 'اتصل بنا'];
   export default menuItems

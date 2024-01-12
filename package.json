@@ -20,6 +20,7 @@
     "react": "^18.2.0",
     "react-countup": "^6.5.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0",
     "styled-components": "^6.1.6",
     "tw-elements-react": "^1.0.0-alpha2",
     "vercel": "^33.0.2"
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",

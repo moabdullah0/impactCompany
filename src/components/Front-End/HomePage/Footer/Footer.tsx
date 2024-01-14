@@ -1,8 +1,10 @@
-import { ThemeProviders } from "../../../../App";
-import nav from "../../../../assets/2.png";
 
-interface Props extends ThemeProviders{}
-const Footer = ({mode}:Props) => {
+import nav from "../../../../assets/2.png";
+import { useGlobalContext } from "../../../Context/ThemeContext";
+
+
+const Footer = () => {
+  const {mode}=useGlobalContext()
   return (
    
       

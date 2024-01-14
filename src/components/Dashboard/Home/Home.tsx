@@ -4,14 +4,13 @@ import { Box } from '@mui/material';
 
 
 
-import {  Theme } from "@mui/material/styles";
+import {  useTheme } from "@mui/material/styles";
 import CustomDrawerHeader from '../Layout/Navbar/DrawerNavbar';
 import SecondNav from '../Layout/Navbar/SecondNav';
 import Main from '../Main/Main';
-interface Themes{
-    theme:Theme
-  }
-const Maintest = ({theme}:Themes) => {
+
+const Maintest = () => {
+  const theme=useTheme()
   return (
     <div className='px-10 ' >
       <Box component="main" sx={{ flexGrow: 1, p: 3 }} >

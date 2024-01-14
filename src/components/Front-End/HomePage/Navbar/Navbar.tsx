@@ -12,19 +12,22 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import nav from "../../../../assets/2.png";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { ThemeProviders } from "../../../../App";
+
 import NavbarMobile from "./NavbarMobile";
 import menuItems from "../../../../data/HomePage/NavbarData";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { grey } from "@mui/material/colors";
-interface Props extends ThemeProviders {
+import { useGlobalContext } from "../../../Context/ThemeContext";
+interface Props  {
   window?: () => Window;
 }
 
 const drawerWidth = 240;
 
-export default function DrawerAppBar({ window, setMode,mode }: Props) {
+export default function DrawerAppBar({ window}: Props) {
+  const {mode,setMode}=useGlobalContext()
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -65,10 +68,13 @@ export default function DrawerAppBar({ window, setMode,mode }: Props) {
             <Button
               sx={{ color: "#fff" }}
               onClick={() =>
-                setMode(mode== "light" ? "dark" : "light")
+                setMode(mode=== "light" ? "dark" : "light")
               }
+             
             >
+              
               {mode==='dark' ?<DarkModeIcon />:<LightModeIcon/>}
+              
             </Button>
           </Box>
         </Toolbar>

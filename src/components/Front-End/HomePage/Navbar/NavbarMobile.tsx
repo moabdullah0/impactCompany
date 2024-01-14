@@ -7,8 +7,8 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import nav from "../../../../assets/2.png";
 import Box from "@mui/material/Box";
 import menuItems from "../../../../data/HomePage/NavbarData";
-import { ThemeProviders } from "../../../../App";
-import LightModeIcon from '@mui/icons-material/LightMode';
+import { ThemeProviders } from "../HomePage";
+import LightModeIcon from "@mui/icons-material/LightMode";
 interface NavbarMobileProps extends ThemeProviders {
   handleDrawerToggle: () => void;
 }
@@ -37,7 +37,9 @@ const NavbarMobile = ({
             sx={{ textAlign: "center" }}
             onClick={() => setMode(mode == "dark" ? "light" : "dark")}
           >
-            <ListItemText primary= {mode==='dark' ?<DarkModeIcon />:<LightModeIcon/>} />
+            <ListItemText
+              primary={mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+            />
           </ListItemButton>
         </ListItem>
       </List>

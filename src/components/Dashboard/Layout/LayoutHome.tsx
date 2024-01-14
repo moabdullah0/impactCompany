@@ -23,7 +23,8 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import CustomDrawerHeader from "./Navbar/DrawerNavbar";
 import IconsSide from "../../../data/Dashboard/SidebarData";
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { ThemeProviders } from "../../../App";
+import { useGlobalContext } from "../../Context/ThemeContext";
+
 
 export const drawerWidth = 240;
 
@@ -70,7 +71,8 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer({ setMode }: ThemeProviders) {
+export default function MiniDrawer() {
+  const {mode,setMode}=useGlobalContext()
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -146,7 +148,7 @@ export default function MiniDrawer({ setMode }: ThemeProviders) {
        
         <ListItem  disablePadding sx={{ display: "block" }}>
               <ListItemButton
-              onClick={() => setMode(theme.palette.mode=="light" ? "dark" : "light")}
+              onClick={() => setMode(mode=="light" ? "dark" : "light")}
 
 
 

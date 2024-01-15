@@ -28,7 +28,7 @@ const Cards = () => {
           }`}
         >
           <div className="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-gray-500 shadow-blue-gray-500/40">
-            <img src={card1} alt="card-image" />
+            <img src={card1} alt="card-image" loading="lazy"  />
           </div>
           <div className="p-6">
             <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
@@ -55,7 +55,7 @@ const Cards = () => {
           }`}
         >
           <div className="relative h-56 mx-4 -mt-6 overflow-hidden bg-gray-200 shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-            <img src={card2} alt="card-image" />
+            <img src={card2} alt="card-image" loading="lazy" />
           </div>
           <div className="p-6">
             <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
@@ -82,7 +82,7 @@ const Cards = () => {
           }`}
         >
           <div className="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-            <img src={card3} alt="card-image" />
+            <img src={card3} alt="card-image" loading="lazy" />
           </div>
           <div className="p-6">
             <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">

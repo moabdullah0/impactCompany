@@ -19,19 +19,20 @@ const AboutCompany = () => {
         transition={{ duration: 2 }}
         className="relative "
       >
+        
         <h1 className="text-4xl font-bold mt-56 z-2 relative text-blue-500 px-10">
           حول الشركة
         </h1>
 
         <h1
-          className={`text-gray-300 text-start mt-4 text-2xl font-bold px-14 ${
+          className={`text-gray-300 text-start mt-4 text-2xl font-bold px-8 ${
             mode == "dark" ? "text-gray-300" : "text-gray-600"
           }`}
         >
           نحن هنا لدعم رحلتك في التعلم وتطوير مهاراتك!
         </h1>
         <p
-          className={`text-gray-300 text-start mt-4 text-xl font-bold px-14 ${
+          className={`text-gray-300 text-start mt-4 text-xl font-bold px-8 ${
             mode == "dark" ? "text-gray-300" : "text-gray-600"
           }`}
         >
@@ -39,7 +40,7 @@ const AboutCompany = () => {
           وميسّرة. سواء كنت تبحث عن توفير اللوجستيات الكاملة لجلسات التدريب أو
           الحاجة لتسهيل جميع جوانبها، نحن هنا لتلبية احتياجاتك. خدماتنا تشمل:
         </p>
-        <ul className=" text-gray-400 text-start mt-2 ml-6 px-10 text-lg font-bold">
+        <ul className=" text-gray-400 text-start mt-2 ml-6 px-8 text-lg font-bold">
           <li>
             <span className="text-green-500 px-2">
               <CheckIcon />
@@ -112,7 +113,7 @@ const AboutCompany = () => {
         transition={{ duration: 1 }}
         className={`relative ${mode == "light" ? "bg-gray-200" : ""}`}
       >
-        <img src={Aboutimg} alt="" className="img  mt-14 h-[90%] w-[90%]" />
+        <img src={Aboutimg} alt="" className="img  mt-14 h-[100%] w-[100%] px-[20px] py-[20px]" />
       </motion.div>
     </div>
   );

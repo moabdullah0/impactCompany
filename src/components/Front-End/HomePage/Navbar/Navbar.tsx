@@ -14,18 +14,21 @@ import nav from "../../../../assets/2.png";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 import NavbarMobile from "./NavbarMobile";
-import menuItems from "../../../../data/HomePage/NavbarData";
-import LightModeIcon from '@mui/icons-material/LightMode';
+
+import LightModeIcon from "@mui/icons-material/LightMode";
 import { grey } from "@mui/material/colors";
 import { useGlobalContext } from "../../../Context/ThemeContext";
-interface Props  {
+import { List } from "@mui/material";
+import menuItems from "../../../../data/HomePage/NavbarmenueData";
+import { Link } from "react-router-dom";
+interface Props {
   window?: () => Window;
 }
 
 const drawerWidth = 240;
 
-export default function DrawerAppBar({ window}: Props) {
-  const {mode,setMode}=useGlobalContext()
+export default function DrawerAppBar({ window }: Props) {
+  const { mode, setMode } = useGlobalContext();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -38,7 +41,7 @@ export default function DrawerAppBar({ window}: Props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ backgroundColor: grey[800] }} >
+      <AppBar component="nav" sx={{ backgroundColor: grey[800] }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -59,24 +62,19 @@ export default function DrawerAppBar({ window}: Props) {
               <span className="mx-5 mt-5">Impact</span>
             </div>
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {menuItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
-              </Button>
+          <List sx={{ display: { xs: "none", sm: "block" } }}>
+            {menuItems.map((item, index) => (
+              <Link to={item.link} key={index} className="mx-2 text-blue-600">
+                {item.title}
+              </Link>
             ))}
             <Button
               sx={{ color: "#fff" }}
-              onClick={() =>
-                setMode(mode=== "light" ? "dark" : "light")
-              }
-             
+              onClick={() => setMode(mode === "light" ? "dark" : "light")}
             >
-              
-              {mode==='dark' ?<DarkModeIcon />:<LightModeIcon/>}
-              
+              {mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
             </Button>
-          </Box>
+          </List>
         </Toolbar>
       </AppBar>
       <nav>
@@ -86,7 +84,7 @@ export default function DrawerAppBar({ window}: Props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, 
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -100,7 +98,6 @@ export default function DrawerAppBar({ window}: Props) {
             handleDrawerToggle={handleDrawerToggle}
             mode={mode}
             setMode={setMode}
-       
           />
         </Drawer>
       </nav>

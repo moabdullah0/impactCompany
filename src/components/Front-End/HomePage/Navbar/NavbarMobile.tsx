@@ -6,9 +6,11 @@ import Divider from "@mui/material/Divider";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import nav from "../../../../assets/2.png";
 import Box from "@mui/material/Box";
-import menuItems from "../../../../data/HomePage/NavbarData";
+
 import { ThemeProviders } from "../HomePage";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import menuItems from "../../../../data/HomePage/NavbarmenueData";
+import { Link } from "react-router-dom";
 interface NavbarMobileProps extends ThemeProviders {
   handleDrawerToggle: () => void;
 }
@@ -25,10 +27,12 @@ const NavbarMobile = ({
       </div>
       <Divider />
       <List>
-        {menuItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+        {menuItems.map((item, index) => (
+          <ListItem key={index} disablePadding >
+            <ListItemButton sx={{ textAlign: "center", alignItems: "center" }}>
+              <Link to={item.link} className="text-center text-blue-600 px-14">
+                {item.title}
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}

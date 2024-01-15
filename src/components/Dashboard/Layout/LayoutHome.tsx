@@ -19,21 +19,18 @@ import openedMixin from "./Sidebar/SidebarItems/openedMixin";
 import closedMixin from "./Sidebar/SidebarItems/closedMixin";
 import MuiDrawer from "@mui/material/Drawer";
 import Navbar from "./Navbar/InfoNavbar";
-import LightModeIcon from '@mui/icons-material/LightMode';
+import LightModeIcon from "@mui/icons-material/LightMode";
 import CustomDrawerHeader from "./Navbar/DrawerNavbar";
 import IconsSide from "../../../data/Dashboard/SidebarData";
-import DarkModeIcon from '@mui/icons-material/DarkMode';
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useGlobalContext } from "../../Context/ThemeContext";
-
+import { Link } from "react-router-dom";
 
 export const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
-
-
-
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -43,7 +40,10 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  backgroundColor:theme.palette.mode=='dark' ? theme.palette.primary.dark :theme.palette.primary.light,
+  backgroundColor:
+    theme.palette.mode == "dark"
+      ? theme.palette.primary.dark
+      : theme.palette.primary.light,
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -72,7 +72,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function MiniDrawer() {
-  const {mode,setMode}=useGlobalContext()
+  const { mode, setMode } = useGlobalContext();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -88,11 +88,9 @@ export default function MiniDrawer() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        
         <Toolbar>
-          
           <IconButton
-          className="text-black"
+            className="text-black"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -101,7 +99,6 @@ export default function MiniDrawer() {
               ...(open && { display: "none" }),
             }}
           >
-           
             <MenuIcon />
           </IconButton>
           <Navbar />
@@ -122,62 +119,59 @@ export default function MiniDrawer() {
         <List>
           {IconsSide.map((text, index) => (
             <ListItem key={index} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+              <Link to={text.link}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  {index === 0 ? <HomeIcon /> : IconsSide[index].icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text.title}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {index === 0 ? <HomeIcon /> : IconsSide[index].icon}
+                  </ListItemIcon>
+
+                  <ListItemText
+                    primary={text.title}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
-       
-        <ListItem  disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-              onClick={() => setMode(mode=="light" ? "dark" : "light")}
 
-
-
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <ListItemButton
+              onClick={() => setMode(mode == "light" ? "dark" : "light")}
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {
-                    theme.palette.mode=="light"?<LightModeIcon/>:  <DarkModeIcon/> 
-                  }
-                 
-                </ListItemIcon>
-                <ListItemText
-                primary="DarkMode"
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-          
-              </ListItemButton>
-            </ListItem>
-            </List>
+                {theme.palette.mode == "light" ? (
+                  <LightModeIcon />
+                ) : (
+                  <DarkModeIcon />
+                )}
+              </ListItemIcon>
+              <ListItemText primary="DarkMode" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+        </List>
         <Divider />
         <List>
           {IconsSide.map((text, index) => (

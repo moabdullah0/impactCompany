@@ -28,12 +28,7 @@ const Landing = () => {
           نحن هنا لمساعدة الفرق والشركات والمنظمات في بناء مستقبل أكثر إشراقًا
           من خلال تقديم قاعات تدريبية فعّالة ومدربين ذوي خبرة.
         </h1>
-        <h1>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-          accusamus minima eum laudantium. Inventore labore numquam fugiat
-          adipisci tempore expedita consequuntur. Itaque inventore fuga, nulla
-          ipsa labore doloribus saepe voluptas.
-        </h1>
+        
         <div className="flex mb-5">
           <Link
             to={"/login"}

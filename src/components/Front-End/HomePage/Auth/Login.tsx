@@ -1,12 +1,14 @@
 
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar'
+import { useGlobalContext } from '../../../Context/ThemeContext';
 export default function Login(): JSX.Element {
+	const { mode } = useGlobalContext();
   return (
 <div dir='rtl'>
 
 <Navbar/>
-<div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+<div className={`min-h-screen  py-6 flex flex-col justify-center sm:py-12 ${mode=='light'?'bg-gray-100':'bg-gray-900'}`}>
 	<div className="relative py-3 sm:max-w-xl sm:mx-auto">
 		<div
 			className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">

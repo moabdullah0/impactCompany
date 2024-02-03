@@ -1,13 +1,12 @@
-
-// import MiniDrawer from "./components/Dashboard/Layout/LayoutHome";
-// import Maintest from "./components/Dashboard/Home/Home";
-
 import { useState } from "react";
 import { Themedark } from "./components/Context/ThemeContext";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import { blue, grey } from "@mui/material/colors";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/routes";
+
+
+
 
 function App() {
   const [mode, setMode] = useState<"light" | "dark">("light");
@@ -21,21 +20,16 @@ function App() {
       },
     },
   });
+
   return (
-   <Themedark.Provider value={{ mode, setMode }}> 
-     <ThemeProvider theme={darkTheme}>
-     <RouterProvider router={router} />
-     </ThemeProvider>
-   </Themedark.Provider>
+ 
+      <Themedark.Provider value={{ mode, setMode }}>
+        <ThemeProvider theme={darkTheme}>
+          <RouterProvider router={router} />
 
-      
+        </ThemeProvider>
+      </Themedark.Provider>
 
-   
-
-
-
-    
-    
   );
 }
 

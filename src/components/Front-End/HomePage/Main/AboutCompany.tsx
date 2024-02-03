@@ -1,18 +1,47 @@
 import CountUp from "react-countup";
-import Aboutimg from "../../../../assets/4878060.jpg";
+import Aboutimg from "../../../../assets/8294-removebg-preview (1).png";
 import "./AboutCompany.css";
-import { motion } from "framer-motion";
+import { motion, useAnimation,useInView } from "framer-motion";
 
 import CheckIcon from "@mui/icons-material/Check";
 import { useGlobalContext } from "../../../Context/ThemeContext";
+import { useEffect, useRef } from "react";
 
 const AboutCompany = () => {
+  const controls = useAnimation();
+    
+  const ref=useRef<HTMLDivElement>(null);
+    const  inView = useInView(ref,{once:true});
+  
+    useEffect(() => {
+      if (inView) {
+        controls.start((i) => ({
+          opacity: 1,
+          y: 0,
+          transition: {
+            delay: i * 1.2, 
+          },
+        }));
+      }
+    }, [controls, inView]);
   const { mode } = useGlobalContext();
   const griditems = `grid lg:grid-cols-2 sm:grid-col-1 gap-4     h-[100%] ${
     mode == "light" ? "bg-gray-200  h-[120%]" : "bg-gray-900"
   }`;
   return (
-    <div className={griditems} id="About" dir="rtl">
+    <motion.div  ref={ref}
+    initial={{  x: -100,
+      opacity: 0,}}
+    whileInView={{x: 0, opacity: 1 }}
+    transition={{duration:2}}
+    viewport={{ once: true }}  className={griditems} id="About" dir="rtl">
+       <motion.div
+       
+      
+        className={`relative ${mode == "light" ? "bg-gray-200" : ""}`}
+      >
+        <img src={Aboutimg} alt="" className="img   mt-14 h-[80%] w-[80%]  " />
+      </motion.div>
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -20,7 +49,7 @@ const AboutCompany = () => {
         className="relative "
       >
         
-        <h1 className="text-4xl font-bold mt-56 z-2 relative text-blue-500 px-10">
+        <h1 className="text-4xl font-bold  z-2 relative text-blue-500 px-10">
           حول الشركة
         </h1>
 
@@ -32,7 +61,7 @@ const AboutCompany = () => {
           نحن هنا لدعم رحلتك في التعلم وتطوير مهاراتك!
         </h1>
         <p
-          className={`text-gray-300 text-start mt-4 text-xl font-bold px-8 ${
+          className={`text-gray-300 text-start mt-4 text-xl font-bold px-8 w-[80%] ${
             mode == "dark" ? "text-gray-300" : "text-gray-600"
           }`}
         >
@@ -40,7 +69,7 @@ const AboutCompany = () => {
           وميسّرة. سواء كنت تبحث عن توفير اللوجستيات الكاملة لجلسات التدريب أو
           الحاجة لتسهيل جميع جوانبها، نحن هنا لتلبية احتياجاتك. خدماتنا تشمل:
         </p>
-        <ul className=" text-gray-400 text-start mt-2 ml-6 px-8 text-lg font-bold">
+        <ul className=" text-gray-400 text-start mt-2 ml-6 px-8 text-lg font-bold  w-[80%]">
           <li>
             <span className="text-green-500 px-2">
               <CheckIcon />
@@ -85,7 +114,7 @@ const AboutCompany = () => {
           </div>
         </form>
 
-        <div className="flex  font-bold  justify-center text-center bg-gradient-to-r from-gray-400 rounded-full w-[90%]">
+        <div className="flex  font-bold  justify-center text-center bg-gradient-to-r from-gray-400 rounded-full w-[90%]" ref={ref}>
           <div className="mx-10 mt-5">
             <p className="text-yellow-600 text-xl">
               <CountUp start={0} end={5000} />
@@ -107,15 +136,8 @@ const AboutCompany = () => {
           </div>
         </div>
       </motion.div>
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-        className={`relative ${mode == "light" ? "bg-gray-200" : ""}`}
-      >
-        <img src={Aboutimg} alt="" className="img  mt-14 h-[100%] w-[100%] px-[20px] py-[20px]" />
-      </motion.div>
-    </div>
+     
+    </motion.div>
   );
 };
 

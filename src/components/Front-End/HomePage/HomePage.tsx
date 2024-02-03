@@ -2,8 +2,9 @@ import Navbar from "./Navbar/Navbar";
 import { CssBaseline } from "@mui/material";
 import AboutCompany from "./Main/AboutCompany";
 import Landing from "./Main/Landing/Landing";
-import Cards from "./Main/Cards/Cards";
+
 import Footer from "./Footer/Footer";
+import HallCard from "./Main/Cards/HallCard";
 
 
 
@@ -18,7 +19,7 @@ const HomePage = () => {
           <Landing />
           <AboutCompany />
 
-          <Cards />
+          <HallCard />
           <Footer />
         </div>
      

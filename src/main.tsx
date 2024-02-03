@@ -5,12 +5,16 @@ import "./index.css";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 
 import App from "./App.tsx";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
- 
-
   <React.StrictMode>
-   <App/>
+    <QueryClientProvider client={queryClient}>
+      <App />
+      <ReactQueryDevtools initialIsOpen />
+    </QueryClientProvider>
   </React.StrictMode>
-
 );

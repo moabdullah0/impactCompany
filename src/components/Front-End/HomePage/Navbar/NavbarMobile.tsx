@@ -6,19 +6,19 @@ import Divider from "@mui/material/Divider";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import nav from "../../../../assets/2.png";
 import Box from "@mui/material/Box";
-
-import { ThemeProviders } from "../HomePage";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import menuItems from "../../../../data/HomePage/NavbarmenueData";
 import { Link } from "react-router-dom";
-interface NavbarMobileProps extends ThemeProviders {
+import { useGlobalContext } from "../../../Context/ThemeContext";
+interface NavbarMobileProps  {
   handleDrawerToggle: () => void;
 }
+
 const NavbarMobile = ({
   handleDrawerToggle,
-  setMode,
-  mode,
+ 
 }: NavbarMobileProps) => {
+  const {mode,setMode}=useGlobalContext()
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <div className="flex relative">
@@ -30,7 +30,7 @@ const NavbarMobile = ({
         {menuItems.map((item, index) => (
           <ListItem key={index} disablePadding >
             <ListItemButton sx={{ textAlign: "center", alignItems: "center" }}>
-              <Link to={item.link} className="text-center text-blue-600 px-14">
+              <Link to={item.link} className="text-center text-blue-600 px-[80px]">
                 {item.title}
               </Link>
             </ListItemButton>

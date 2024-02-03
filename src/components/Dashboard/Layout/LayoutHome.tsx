@@ -15,8 +15,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
-import openedMixin from "./Sidebar/SidebarItems/openedMixin";
-import closedMixin from "./Sidebar/SidebarItems/closedMixin";
 import MuiDrawer from "@mui/material/Drawer";
 import Navbar from "./Navbar/InfoNavbar";
 import LightModeIcon from "@mui/icons-material/LightMode";
@@ -25,6 +23,10 @@ import IconsSide from "../../../data/Dashboard/SidebarData";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useGlobalContext } from "../../Context/ThemeContext";
 import { Link } from "react-router-dom";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import openedMixin from "./Sidebar/SidebarItems/openedMixin";
+import closedMixin from "./Sidebar/SidebarItems/closedMixin";
 
 export const drawerWidth = 240;
 
@@ -62,12 +64,16 @@ const Drawer = styled(MuiDrawer, {
   whiteSpace: "nowrap",
   boxSizing: "border-box",
   ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
+    "& .MuiDrawer-paper": {
+      width: drawerWidth,
+      ...openedMixin(theme),
+    },
   }),
   ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
+    "& .MuiDrawer-paper": {
+      width: drawerWidth,
+      ...closedMixin(theme),
+    },
   }),
 }));
 
@@ -119,33 +125,68 @@ export default function MiniDrawer() {
         <List>
           {IconsSide.map((text, index) => (
             <ListItem key={index} disablePadding sx={{ display: "block" }}>
-              <Link to={text.link}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
+              {text.Items ? (
+                open ? (
+                  <Select
+                    displayEmpty
+                    value=""
+                    sx={{ minWidth: "100%", opacity: open ? 1 : 0 }}
+                    renderValue={() => text.title}
+                  >
+                    <MenuItem value="" disabled>
+                      {text.title}
+                      {text.icon}
+                    </MenuItem>
+                    {text.Items.map((centerItem, centerIndex) => (
+                      <MenuItem key={centerIndex} value={centerItem.link}>
+                        <Link to={centerItem.link}>
+                          {centerItem.icon} {centerItem.title}
+                        </Link>
+                      </MenuItem>
+                    ))}
+                  </Select>
+                ) : (
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
+                     px:2.5
                     }}
                   >
-                    {index === 0 ? <HomeIcon /> : IconsSide[index].icon}
+                    {text.icon}
                   </ListItemIcon>
-
-                  <ListItemText
-                    primary={text.title}
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </Link>
+                )
+              ) : (
+                <Link to={text.link}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {index === 0 ? <HomeIcon /> : text.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={text.title}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </Link>
+              )}
             </ListItem>
           ))}
-
+        </List>
+        <Divider />
+        <List>
           <ListItem disablePadding sx={{ display: "block" }}>
             <ListItemButton
               onClick={() => setMode(mode == "light" ? "dark" : "light")}
@@ -171,34 +212,6 @@ export default function MiniDrawer() {
               <ListItemText primary="DarkMode" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
-        </List>
-        <Divider />
-        <List>
-          {IconsSide.map((text, index) => (
-            <ListItem key={index} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {index === 0 ? <HomeIcon /> : IconsSide[index].icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text.title}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
         </List>
       </Drawer>
     </Box>

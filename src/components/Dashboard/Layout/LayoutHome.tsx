@@ -1,7 +1,6 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,7 +14,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
-import MuiDrawer from "@mui/material/Drawer";
 import Navbar from "./Navbar/InfoNavbar";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import CustomDrawerHeader from "./Navbar/DrawerNavbar";
@@ -25,57 +23,9 @@ import { useGlobalContext } from "../../Context/ThemeContext";
 import { Link } from "react-router-dom";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import openedMixin from "./Sidebar/SidebarItems/openedMixin";
-import closedMixin from "./Sidebar/SidebarItems/closedMixin";
-
+import AppBar from "./Sidebar/SidebarItems/AppBar";
+import Drawer from "./Sidebar/SidebarItems/Drawer";
 export const drawerWidth = 240;
-
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  backgroundColor:
-    theme.palette.mode == "dark"
-      ? theme.palette.primary.dark
-      : theme.palette.primary.light,
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    "& .MuiDrawer-paper": {
-      width: drawerWidth,
-      ...openedMixin(theme),
-    },
-  }),
-  ...(!open && {
-    "& .MuiDrawer-paper": {
-      width: drawerWidth,
-      ...closedMixin(theme),
-    },
-  }),
-}));
 
 export default function MiniDrawer() {
   const { mode, setMode } = useGlobalContext();
@@ -151,7 +101,7 @@ export default function MiniDrawer() {
                       minWidth: 0,
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
-                     px:2.5
+                      px: 2.5,
                     }}
                   >
                     {text.icon}

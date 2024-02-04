@@ -1,8 +1,8 @@
 import HallData from "../../../data/Hall/HallData";
 import MiniDrawer from "../Layout/LayoutHome";
-import {z} from 'zod'
-import {useForm} from 'react-hook-form'
-import {zodResolver} from  '@hookform/resolvers/zod'
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function isValidOption(value: string): boolean {
   const validOptions = HallData.map((data) => data.title);
@@ -10,29 +10,37 @@ function isValidOption(value: string): boolean {
   return validOptions.includes(value);
 }
 function isValidTime(value: string): boolean {
-  
   const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
   return timeRegex.test(value);
 }
-const schema=z.object({
-  fName:z.string().min(6).max(20),
-  address:z.string().min(6).max(20),
+const schema = z.object({
+  fName: z
+    .string()
+    .min(6, { message: "يجب ان لا يقل اسم المستخدم عن 6 احرف " })
+    .max(20),
+  address: z.string().min(6, { message: "عنوان المركز بالتفصيل" }).max(20),
   hall: z.string().refine((value) => isValidOption(value), {
-    message: "يجب اختيار خيار صحيح",
+    message: "يجب تحديد القاعة المقام فيها التدريب",
   }),
 
-  centerName:   z.string().trim().nonempty({ message: "يجب اختيار hglv;." }),
-  guest:z.number(),
-  date:z.date(),
+  centerName: z.string().refine((value) => isValidOption(value), {
+    message: "يجب اختيار المركز المقام فيه التدريب",
+  }),
+  guest: z.number(),
+  date: z.date(),
   time: z.string().refine((value) => isValidTime(value), {
     message: "يجب إدخال وقت صحيح",
   }),
-})
-type ExpenceFormData=z.infer<typeof schema>
+});
+type ExpenceFormData = z.infer<typeof schema>;
 const CenterAdd = () => {
-  const {register,handleSubmit,formState:{errors}}=useForm<ExpenceFormData>({
-    resolver:zodResolver(schema)
-  })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ExpenceFormData>({
+    resolver: zodResolver(schema),
+  });
   return (
     <div>
       <MiniDrawer />
@@ -42,7 +50,10 @@ const CenterAdd = () => {
       >
         <div className="mx-auto w-full max-w-[550px] bg-white">
           <h1 className="text-blue-600 mb-5 ">اضافة مركز جديد</h1>
-          <form method="POST" onSubmit={handleSubmit(data=>console.log(data))} >
+          <form
+            method="POST"
+            onSubmit={handleSubmit((data) => console.log(data))}
+          >
             <div className="-mx-3 flex flex-wrap">
               <div className="w-full px-3 sm:w-1/2">
                 <div className="mb-5">
@@ -50,56 +61,70 @@ const CenterAdd = () => {
                     اسم المركز
                   </label>
                   <input
-                  {...register('fName')}
+                    {...register("fName")}
                     type="text"
                     name="fName"
                     id="fName"
                     placeholder="First Name"
                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
-                      {errors.fName&&<p className="text-red-500">{errors.fName.message}</p>}
+                  {errors.fName && (
+                    <p className="text-red-500">{errors.fName.message}</p>
+                  )}
                 </div>
                 <div className="mb-5">
                   <label className="mb-3 block text-base font-medium text-[#07074D]">
                     عنوان المركز
                   </label>
                   <input
-                       {...register('address')}
+                    {...register("address")}
                     type="text"
                     name="address"
                     id="address"
                     placeholder="First Name"
                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
-                      {errors.address&&<p className="text-red-500">{errors.address.message}</p>}
+                  {errors.address && (
+                    <p className="text-red-500">{errors.address.message}</p>
+                  )}
                 </div>
                 <div className="mb-5">
                   <label className="mb-3 block text-base font-medium text-[#07074D]">
                     المركز الذي سيقام فيه التدريب
                   </label>
-                  <select   {...register('centerName')} name="centerName" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                  <select
+                    {...register("centerName")}
+                    name="centerName"
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  >
                     <option value="1">اختر مركز </option>
                     <option value="2">مركز اعزاز</option>
                     <option value="1">مركز الدانا</option>
                     <option value="1">مركز سرمدا</option>
                   </select>
-                  {errors.centerName&&<p className="text-red-500">{errors.centerName.message}</p>}
+                  {errors.centerName && (
+                    <p className="text-red-500">{errors.centerName.message}</p>
+                  )}
                 </div>
                 <div className="mb-5">
                   <label className="mb-3 block text-base font-medium text-[#07074D]">
                     القاعة
                   </label>
-                  <select    {...register('hall')} name="hall" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                  <select
+                    {...register("hall")}
+                    name="hall"
+                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  >
                     <option value="1">اختر القاعة </option>
-                  {
-                    HallData.map((data, index)=>(
-                      <option value={data.id} key={index}>{data.title}</option>
-                    )
-                   
-                    )
-                  }
+                    {HallData.map((data, index) => (
+                      <option value={data.id} key={index}>
+                        {data.title}
+                      </option>
+                    ))}
                   </select>
-                  {errors.hall&&<p className="text-red-500">{errors.hall.message}</p>}
+                  {errors.hall && (
+                    <p className="text-red-500">{errors.hall.message}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -108,7 +133,7 @@ const CenterAdd = () => {
                 عدد الحاضرين للتدريب
               </label>
               <input
-                {...register('guest')}
+                {...register("guest")}
                 type="number"
                 name="guest"
                 id="guest"
@@ -116,7 +141,9 @@ const CenterAdd = () => {
                 min="0"
                 className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
-              {errors.guest&&<p>{errors.guest.message}</p>}
+              {errors.guest && (
+                <p className="text-red-500">{errors.guest.message}</p>
+              )}
             </div>
 
             <div className="-mx-3 flex flex-wrap">
@@ -126,13 +153,15 @@ const CenterAdd = () => {
                     تاريخ التدريب
                   </label>
                   <input
-                   {...register('date')} 
+                    {...register("date")}
                     type="date"
                     name="date"
                     id="date"
                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
-                             {errors.date&&<p className="text-red-500">{errors.date.message}</p>}
+                  {errors.date && (
+                    <p className="text-red-500">{errors.date.message}</p>
+                  )}
                 </div>
               </div>
               <div className="w-full px-3 sm:w-1/2">
@@ -141,13 +170,15 @@ const CenterAdd = () => {
                     وقت التدريب
                   </label>
                   <input
-                    {...register('time')} 
+                    {...register("time")}
                     type="time"
                     name="time"
                     id="time"
                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
-                  {errors.time&&<p className="text-red-500">{errors.time.message}</p>}
+                  {errors.time && (
+                    <p className="text-red-500">{errors.time.message}</p>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
-import Login from "../components/Front-End/HomePage/Auth/Login";
+import Login from "../components/Front-End/Auth/Login";
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../components/Front-End/HomePage/HomePage";
-import Register from "../components/Front-End/HomePage/Auth/Register";
+import Register from "../components/Front-End/Auth/Register";
 import DashboardHome from "../components/Dashboard/DashboardHome/DashboardHome";
 import TraningAdd from "../components/Front-End/Trainings/TraningAdd";
 import CenterAdd from "../components/Dashboard/Centers/CenterAdd";

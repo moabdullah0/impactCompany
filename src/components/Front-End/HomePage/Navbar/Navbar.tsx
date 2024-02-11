@@ -39,32 +39,46 @@ export default function DrawerAppBar({ window }: Props) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar component="nav" sx={{ backgroundColor: grey[300] }}>
-        <Toolbar >
-          <div className="flex"  aria-label="open drawer">
-
-         
-          <IconButton
-            color="info"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <img src={nav} className="h-16 lg:opacity-0 sm:opacity-1   absolute right-[80%] top-[-5px]" alt="logo" />
+        <Toolbar>
+          <div className="flex" aria-label="open drawer">
+            <IconButton
+              color="info"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <img
+              src={nav}
+              className="h-16 lg:opacity-0 sm:opacity-1   absolute right-[80%] top-[-5px]"
+              alt="logo"
+            />
           </div>
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "flex", alignItems: "center" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "flex", alignItems: "center" },
+            }}
           >
             <div className="flex relative">
               <img src={nav} className="h-16" alt="logo" />
               <span className="mx-5 mt-5 text-black">Impact</span>
             </div>
           </Typography>
-          <List sx={{ display: { xs: "none", sm: "flex", gap: "10px", alignItems: "center" } }}>
+          <List
+            sx={{
+              display: {
+                xs: "none",
+                sm: "flex",
+                gap: "10px",
+                alignItems: "center",
+              },
+            }}
+          >
             {menuItems.map((item, index) => (
               <Link to={item.link} key={index} className="text-blue-400">
                 {item.title}

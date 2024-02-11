@@ -6,6 +6,8 @@ import DashboardHome from "../components/Dashboard/DashboardHome/DashboardHome";
 import TraningAdd from "../components/Front-End/Trainings/TraningAdd";
 import CenterAdd from "../components/Dashboard/Centers/CenterAdd";
 import PostsList from "../components/Front-End/Poststest/PostsList";
+import Log from "../components/Front-End/Auth/log";
+import Reg from "../components/Front-End/Auth/reg";
 
 const router = createBrowserRouter([
   {
@@ -14,11 +16,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    // element: <Login />,
+    element: <Log />,
   },
   {
     path: "/register",
-    element: <Register />,
+    // element: <Register />,
+    element: <Reg />,
   },
   {
     path: "/dash",

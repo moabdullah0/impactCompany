@@ -1,9 +1,12 @@
-import React from "react";
+import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Link } from "react-router-dom";
+import Nav from '../Front-End/HomePage/nav/nav';
 
 export default function log(): JSX.Element {
   return (
-    <div>
+    <div >
+            <Nav/>
       <div
         className="flex h-screen relative w-full items-center blur-sm bg-opacity-95 justify-center bg-cover "
         style={{
@@ -44,20 +47,22 @@ export default function log(): JSX.Element {
           </div>
           <form action="#">
             <div className="mb-4">
+              <div className=' w-[20%] absolute top-[43%] mx-2'><MarkEmailReadIcon/></div>
               <input
                 className="rounded-3xl border border-Gold placeholder-gray-900 focus:border-Gold2 bg-slate-300 px-6 py-2 shadow-lg outline-none text-lg"
-                type="text"
+                type="email"
                 name="name"
-                placeholder="@"
+                placeholder="   Email"
               />
             </div>
 
             <div className="mb-4">
+              <div className='w-[20%] absolute top-[55%] mx-2'><LockOpenIcon/></div>
               <input
                 className="rounded-3xl flex justify-center placeh bg-slate-300 focus:border-Gold2 px-6 py-2  border border-Gold shadow-lg outline-none placeholder-gray-900 text-lg"
                 type="password"
                 name="name"
-                placeholder="*********"
+                placeholder="  Password"
               />
             </div>
             <div className="mt-8 flex justify-center">

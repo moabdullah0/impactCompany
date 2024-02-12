@@ -22,7 +22,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <div className="border-2 bg-DarkBlue shadow-sm">
+    <div className="border-2 bg-DarkBlue shadow-sm " dir='rtl'>
       <div className="flex flex-col justify-between h-auto max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <div className="flex flex-row   items-center justify-between ">
           <button

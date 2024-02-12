@@ -1,6 +1,6 @@
 import CountUp from "react-countup";
 import Aboutimg from "../../../../assets/8294-removebg-preview (1).png";
-import "./AboutCompany.css";
+
 import { motion, useAnimation,useInView } from "framer-motion";
 
 import CheckIcon from "@mui/icons-material/Check";

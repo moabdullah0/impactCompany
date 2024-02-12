@@ -5,9 +5,6 @@ import { blue, grey } from "@mui/material/colors";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/routes";
 
-
-
-
 function App() {
   const [mode, setMode] = useState<"light" | "dark">("light");
   const darkTheme: Theme = createTheme({
@@ -22,14 +19,11 @@ function App() {
   });
 
   return (
- 
-      <Themedark.Provider value={{ mode, setMode }}>
-        <ThemeProvider theme={darkTheme}>
-          <RouterProvider router={router} />
-
-        </ThemeProvider>
-      </Themedark.Provider>
-
+    <Themedark.Provider value={{ mode, setMode }}>
+      <ThemeProvider theme={darkTheme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </Themedark.Provider>
   );
 }
 

@@ -1,69 +1,66 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import menuItems from "../../../../data/HomePage/NavbarmenueData";
 
 export default function Nav() {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  // Add event listener to update menu state when screen width changes
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMenuOpen(window.innerWidth > 1024);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
-    <div className="border-2 bg-DarkBlue shadow-sm">
-      <div className="flex flex-col justify-between h-auto max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-        <div className="flex flex-row   items-center justify-between ">
-          <button
-            className="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
-            onClick={toggleMenu}
-          >
-            <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6">
-              <path
-                fillRule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              ></path>
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </button>
-          <img
-            src="../../../../../src/assets/logo.png"
-            alt=""
-            className="h-16 w-32 "
-          />
+    <div className="m-4 absolute z-30">
+      <button
+        onClick={toggleMenu}
+        className="flex items-center middle none center mr-3 rounded-lg bg-gradient-to-tr bg-DarkBlue py-3 px-6 font-sans text-xs font-bold uppercase text-Gold2 shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      >
+        <div className="flex">
+          <div className="font-serif text-lg">
+            {isMenuOpen ? "إغلاق" : "القائمة"}
+          </div>
+          <svg fill="currentColor" viewBox="0 0 20 20" className="w-8 h-6 mr-2">
+            {isMenuOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24"
+                viewBox="0 -960 960 960"
+                width="24"
+              >
+                <path d="M120-240v-80h520v80H120Zm664-40L584-480l200-200 56 56-144 144 144 144-56 56ZM120-440v-80h400v80H120Zm0-200v-80h520v80H120Z" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24"
+                viewBox="0 -960 960 960"
+                width="24"
+              >
+                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+              </svg>
+            )}
+          </svg>
         </div>
-        <nav
-          className={`flex-col justify-end flex-grow pb-4 md:pb-0 md:flex   md:flex-row ${
-            isMenuOpen ? "flex" : "hidden"
-          }`}
+      </button>
+      {isMenuOpen && (
+        <ul
+          role="menu"
+          data-popover="menu"
+          data-popover-placement="bottom"
+          className="absolute  z-10 min-w-[180px] overflow-auto rounded-md border border-blue-gray-50 bg-white p-3 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none"
         >
           {menuItems.map((item, index) => (
-            <a
+            <li
               key={index}
-              href={item.link}
-              className="block text-blue-600 md:inline-block py-2 px-4 mt-2 text-xl font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+              className="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
             >
-              {item.title}
-            </a>
+              <Link to={item.link} className="text-blue-400">
+                {item.title}
+              </Link>
+            </li>
           ))}
-        </nav>
-      </div>
+        </ul>
+      )}
     </div>
   );
 }

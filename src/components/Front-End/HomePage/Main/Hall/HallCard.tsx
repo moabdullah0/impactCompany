@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -8,12 +8,12 @@ import 'swiper/css/navigation';
 import card1 from "../../../../../assets/seminar-bankers-min.jpg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useGlobalContext } from "../../../../Context/ThemeContext";
-import HallData from "../../../../../data/Hall/HallData";
-import { useState } from "react";
-import useHall from "../../../../../hooks/useHall";
+// import HallData from "../../../../../data/Hall/HallData";
+// import useHall from "../../../../../hooks/useHall";
 
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { FetchHall } from '../../../../../hooks/useCenters';
 
 const HallCard = () => {
   const controls = useAnimation();
@@ -35,18 +35,18 @@ const HallCard = () => {
   }, [controls, inView]);
 
   const { mode } = useGlobalContext();
-  const [selected, setSelected] = useState<string>();
-  const { isError, isLoading, error, data } = useHall(selected);
+  // const [selected, setSelected] = useState<string>();
+  const { isError, isLoading, error, data } = FetchHall();
 
   if (isLoading) return <div>...Loading</div>;
   if (isError) return <div>{error.message}</div>;
 
   const limitedData = data?.slice(0, 4);
 
-  const handleBtns = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const word = e.currentTarget.value;
-    setSelected(word);
-  };
+  // const handleBtns = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   const word = e.currentTarget.value;
+  //   setSelected(word);
+  // };
 
   return (
     <motion.div
@@ -71,12 +71,12 @@ const HallCard = () => {
 
       <div className="grid w-full place-items-center overflow-x-scroll rounded-lg lg:overflow-visible divide-x">
         <div>
-          {HallData.map((hall) => (
+          {data?.map((hall) => (
             <button
               key={hall.id}
               type="submit"
               value={hall.slug}
-              onClick={handleBtns}
+              // onClick={handleBtns}
               className="mb-5 mx-2 px-5 align-middle select-none text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none py-3 rounded-lg bg-blue-400 text-white text-x shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
             >
               {hall.title}

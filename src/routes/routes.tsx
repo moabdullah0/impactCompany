@@ -2,11 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../components/Front-End/HomePage/HomePage";
 
 import DashboardHome from "../components/Dashboard/DashboardHome/DashboardHome";
-import TraningAdd from "../components/Front-End/Trainings/TraningAdd";
-import CenterAdd from "../components/Dashboard/Centers/CenterAdd";
-import PostsList from "../components/Front-End/Poststest/PostsList";
+import PosTraining from "../components/Dashboard/Trainings/PosTraining";
+import PostCenters from "../components/Dashboard/Centers/PostCenters";
 import Log from "../components/Auth/Login";
 import Reg from "../components/Auth/Register";
+import ListCenter from "../components/Dashboard/Centers/ListCenter";
+import UpdateCenter from "../components/Dashboard/Centers/UpdateCenter";
+import TableTraining from "../components/Dashboard/Trainings/TrainingHome";
+import UpdateTraining from "../components/Dashboard/Trainings/UpdateTraining";
+
 
 const router = createBrowserRouter([
   {
@@ -15,12 +19,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    // element: <Login />,
+
     element: <Log />,
   },
   {
     path: "/register",
-    // element: <Register />,
+
     element: <Reg />,
   },
   {
@@ -31,17 +35,34 @@ const router = createBrowserRouter([
   {
     path: "/addtraining",
 
-    element: <TraningAdd />,
+    element: <PosTraining />,
   },
   {
-    path: "/addcenter",
+    path: "/training/Edit/:id",
 
-    element: <CenterAdd />,
+    element: <UpdateTraining />,
   },
   {
-    path: "/post",
+    path: "/ShowTraining",
 
-    element: <PostsList />,
+    element: <TableTraining />,
   },
+  {
+    path: "/center",
+
+    element: <ListCenter />,
+  },
+  {
+    path: "/center/add",
+
+    element: <PostCenters />,
+  },
+  {
+    path: "/center/edit/:id",
+
+    element: <UpdateCenter />,
+  },
+ 
+  
 ]);
 export default router;

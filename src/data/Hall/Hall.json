@@ -1,0 +1,49 @@
+{
+  "hall": [
+    {
+      "id": "250a",
+      "title": "مركز ادلب",
+      "address": "سراقب - دوار الحسن",
+      "description": "I have an idea for a clothing project, and I want a popular name that spreads among people. I live in northern Syria in a conflict zone, and this project is new in the region. I want you to help me ch",
+      "slug": "aldana"
+    },
+    {
+      "id": "62e9",
+      "title": "مركز الباب",
+      "address": "سراقب - دوار الحسن",
+      "description": "I have an idea for a clothing project, and I want a popular name that spreads among people. I live in northern Syria in a conflict zone, and this project is new in the region. I want you to help me ch",
+      "slug": "albab"
+    },
+    {
+      "title": "مركز الدانا",
+      "address": "سراقب - دوار الحسن",
+      "description": "I have an idea for a clothing project, and I want a popular name that spreads among people. I live in northern Syria in a conflict zone, and this project is new in the region. I want you to help me ch",
+      "slug": "aldana",
+      "id": "ac7a"
+    },
+    {
+      "id": "0c43",
+      "title": "مركز اعزاز",
+      "address": "سراقب - دوار الحسن",
+      "description": "I have an idea for a clothing project, and I want a popular name that spreads among people. I live in northern Syria in a conflict zone, and this project is new in the region. I want you to help me ch",
+      "slug": "azaz"
+    },
+    {
+      "title": "سراقب",
+      "address": "سراقب - دوار الحسن",
+      "description": "I have an idea for a clothing project, and I want a popular name that spreads among people. I live in northern Syria in a conflict zone, and this project is new in the region. I want you to help me ch",
+      "slug": "aldana",
+      "id": "931e"
+    },
+    {
+      "id": "6ffa",
+      "title": "مركز سراقب 2",
+      "address": "سراقب - دوار الحسن",
+      "slug": "azaz",
+      "Image": {
+        "0": {}
+      },
+      "description": "I have an idea for a clothing project, and I want a popular name that spreads among people. I live in northern Syria in a conflict zone, and this project is new in the region. I want you to help me ch"
+    }
+  ]
+}

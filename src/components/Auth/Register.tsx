@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { zodResolver } from "@hookform/resolvers/zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 const typeuser = ["مدير ", "ميسر جلسة", "منظمة", "مستخدم"];
@@ -27,7 +27,7 @@ export default function Reg() {
     handleSubmit,
     formState: { errors},
   } = useForm<Validation>({
-    resolver: zodResolver(schema),
+    // resolver: zodResolver(schema),
   });
 
   return (
